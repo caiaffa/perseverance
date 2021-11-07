@@ -4,9 +4,7 @@ defmodule Perseverance.UseCases.StartPositionUseCase do
   @repository Cachex
 
   def create do
-    case @repository.put(:perseverance, :current_position, @default_position) do
-      {:ok, true} -> @repository.get(:perseverance, :current_position)
-      {:error, error} -> {:error, error}
-    end
+    @repository.put(:perseverance, :current_position, @default_position)
+    @repository.get(:perseverance, :current_position)
   end
 end

@@ -6,16 +6,10 @@ defmodule PerseveranceWeb.ControlCenterController do
   alias Perseverance.UseCases.{MovePositionUseCase, ShowPositionUseCase, StartPositionUseCase}
 
   def start(conn, _params) do
-    case StartPositionUseCase.create() do
-      {:ok, current_position} ->
-        conn
-        |> put_status(200)
-        |> json(current_position)
-
-      {:error, _} ->
-        conn
-        |> put_status(500)
-        |> json(%{"error" => "Erro interno"})
+    with {:ok, current_position} <- StartPositionUseCase.create() do
+      conn
+      |> put_status(200)
+      |> json(current_position)
     end
   end
 
