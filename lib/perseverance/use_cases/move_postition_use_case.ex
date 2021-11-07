@@ -16,7 +16,6 @@ defmodule Perseverance.UseCases.MovePositionUseCase do
         {:error, :position_null}
 
       {:error, _} ->
-        IO.inspect("DSADSADSA")
         {:error, :invalid_position}
     end
   end

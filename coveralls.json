@@ -1,0 +1,24 @@
+{
+    "default_stop_words": [
+        "defmodule",
+        "defrecord",
+        "defimpl",
+        "def.+(.+//.+).+do",
+        "use"
+    ],
+    "coverage_options": {
+        "treat_no_relevant_lines_as_covered": true,
+        "output_dir": "cover/",
+        "minimum_coverage": 0
+    },
+    "skip_files": [
+        "test/support/conn_case.ex",
+        "test/support/channel_case.ex",
+        "lib/perseverance.ex",
+        "lib/perseverance/application.ex",
+        "lib/perseverance_web.ex",
+        "lib/perseverance_web/endpoint.ex",
+        "lib/perseverance_web/router.ex",
+        "lib/perseverance_web/telemetry.ex"
+    ]
+}

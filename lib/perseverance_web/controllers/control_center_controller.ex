@@ -3,7 +3,7 @@ defmodule PerseveranceWeb.ControlCenterController do
 
   use PerseveranceWeb, :controller
 
-  alias Perseverance.UseCases.{StartPositionUseCase, MovePositionUseCase, ShowPositionUseCase}
+  alias Perseverance.UseCases.{MovePositionUseCase, ShowPositionUseCase, StartPositionUseCase}
 
   def start(conn, _params) do
     case StartPositionUseCase.create() do
@@ -33,8 +33,8 @@ defmodule PerseveranceWeb.ControlCenterController do
     end
   end
 
-  def move(conn, %{"movimentos" => movimentos}) do
-    case MovePositionUseCase.move(movimentos) do
+  def move(conn, %{"movements" => movements}) do
+    case MovePositionUseCase.move(movements) do
       {:ok, current_position} ->
         conn
         |> put_status(200)

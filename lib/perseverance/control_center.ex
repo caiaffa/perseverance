@@ -9,12 +9,17 @@ defmodule Perseverance.ControlCenter do
   @size_x 0..4
   @size_y 0..4
 
-  def handle_command(commands, start_position) do
+  def handle_command(commands, %{"x" => _, "y" => _, "face" => _} = start_position) do
     with {:ok, current_position} <- get_each_command(commands, start_position),
          {:ok, _} <- validate_current_position(current_position) do
       {:ok, current_position}
     end
   end
+
+  def handle_command(_commands, %{"face" => face} = start_position) when is_nil(face),
+    do: {:error, start_position}
+
+  def handle_command(_commands, start_position), do: {:error, start_position}
 
   defp get_each_command([], current_position), do: {:ok, current_position}
 
