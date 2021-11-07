@@ -1,0 +1,19 @@
+version: '3.3'
+services:
+  perseverance:
+    container_name: perseverance
+    image: perseverance
+    build:
+      context: .
+    env_file:
+      - env.dev
+    ports:
+      - "4000:4000"
+    volumes:
+      - ./config:/app/config
+      - ./lib:/app/lib
+      - ./priv:/app/priv
+      - ./mix.exs:/app/mix.exs
+      - ./mix.lock:/app/mix.lock
+      - ./test:/app/test
+      - ./entrypoint.sh:/app/entrypoint.sh
