@@ -7,5 +7,11 @@ defmodule PerseveranceWeb.Router do
 
   scope "/api", PerseveranceWeb do
     pipe_through :api
+
+    scope "/v1" do
+      get "/commands/restart-position", ControlCenterController, :restart
+      get "/commands", ControlCenterController, :show
+      post "/commands", ControlCenterController, :move
+    end
   end
 end
