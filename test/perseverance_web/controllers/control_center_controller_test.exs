@@ -52,5 +52,12 @@ defmodule PerseveranceWeb.ControlCenterControllerTest do
       conn = get(conn, Routes.control_center_path(conn, :show))
       assert json_response(conn, 200) == %{"face" => "D", "x" => 0, "y" => 0}
     end
+
+    test "should return error if initial position is empty", %{conn: conn} do
+      Cachex.del(:perseverance, :current_position)
+
+      conn = get(conn, Routes.control_center_path(conn, :show))
+      assert json_response(conn, 400) == %{"error" => "Posição inicial não detectada"}
+    end
   end
 end
