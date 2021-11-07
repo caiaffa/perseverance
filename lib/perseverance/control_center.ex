@@ -1,4 +1,6 @@
 defmodule Perseverance.ControlCenter do
+  @moduledoc false
+
   @directions %{
     "GE" => %{"D" => "C", "C" => "E", "E" => "B", "B" => "D"},
     "GD" => %{"D" => "B", "B" => "E", "E" => "C", "C" => "D"}
@@ -20,7 +22,6 @@ defmodule Perseverance.ControlCenter do
     [command | tail_commands] = commands
 
     with {:ok, new_position} <- execute_command(command, current_position) do
-      IO.inspect(new_position)
       get_each_command(tail_commands, new_position)
     end
   end

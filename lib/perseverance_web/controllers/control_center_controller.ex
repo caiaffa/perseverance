@@ -1,4 +1,6 @@
 defmodule PerseveranceWeb.ControlCenterController do
+  @moduledoc false
+
   use PerseveranceWeb, :controller
 
   alias Perseverance.UseCases.{StartPositionUseCase, MovePositionUseCase, ShowPositionUseCase}

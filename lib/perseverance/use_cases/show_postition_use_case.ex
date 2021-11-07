@@ -1,7 +1,8 @@
 defmodule Perseverance.UseCases.ShowPositionUseCase do
+  @moduledoc false
   @repository Cachex
 
-  def show() do
+  def show do
     @repository.get(:perseverance, :current_position)
   end
 end

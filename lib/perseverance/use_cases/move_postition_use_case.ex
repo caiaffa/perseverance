@@ -1,4 +1,5 @@
 defmodule Perseverance.UseCases.MovePositionUseCase do
+  @moduledoc false
   alias Perseverance.ControlCenter
 
   @repository Cachex
