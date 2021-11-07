@@ -7,21 +7,21 @@ defmodule Perseverance.ControlCenter do
   @size_x 0..4
   @size_y 0..4
 
-  def handle_command(commands, current_position) do
-    with {:ok, _, direction} <- get_each_command(commands, "D", current_position),
+  def handle_command(commands, start_position) do
+    with {:ok, current_position} <- get_each_command(commands, start_position),
          {:ok, _} <- validate_current_position(current_position) do
-      {:ok, current_position, direction}
+      {:ok, current_position}
     end
   end
 
-  defp get_each_command([], direction, current_position), do: {:ok, current_position, direction}
+  defp get_each_command([], current_position), do: {:ok, current_position}
 
-  defp get_each_command(commands, direction, current_position) do
+  defp get_each_command(commands, current_position) do
     [command | tail_commands] = commands
 
-    with {:ok, new_direction, new_position, _direction} <-
-           execute_command(command, direction, current_position) do
-      get_each_command(tail_commands, new_direction, new_position)
+    with {:ok, new_position} <- execute_command(command, current_position) do
+      IO.inspect(new_position)
+      get_each_command(tail_commands, new_position)
     end
   end
 
@@ -32,23 +32,23 @@ defmodule Perseverance.ControlCenter do
     end
   end
 
-  defp execute_command("GE" = command, direction, current_position) do
-    {:ok, @directions[command][direction], current_position, direction}
+  defp execute_command("GE" = command, current_position) do
+    {:ok, Map.put(current_position, "face", @directions[command][current_position["face"]])}
   end
 
-  defp execute_command("GD" = command, direction, current_position) do
-    {:ok, @directions[command][direction], current_position, direction}
+  defp execute_command("GD" = command, current_position) do
+    {:ok, Map.put(current_position, "face", @directions[command][current_position["face"]])}
   end
 
-  defp execute_command("M" = _command, direction, current_position) do
-    case direction do
-      "C" -> {:ok, direction, Map.update(current_position, "y", 0, &(&1 + 1)), direction}
-      "B" -> {:ok, direction, Map.update(current_position, "y", 0, &(&1 - 1)), direction}
-      "D" -> {:ok, direction, Map.update(current_position, "x", 0, &(&1 + 1)), direction}
-      "E" -> {:ok, direction, Map.update(current_position, "x", 0, &(&1 - 1)), direction}
+  defp execute_command("M" = _command, current_position) do
+    case current_position["face"] do
+      "C" -> {:ok, Map.update(current_position, "y", 0, &(&1 + 1))}
+      "B" -> {:ok, Map.update(current_position, "y", 0, &(&1 - 1))}
+      "D" -> {:ok, Map.update(current_position, "x", 0, &(&1 + 1))}
+      "E" -> {:ok, Map.update(current_position, "x", 0, &(&1 - 1))}
     end
   end
 
-  defp execute_command(_command, direction, current_position),
-    do: {:error, current_position, direction}
+  defp execute_command(_command, current_position),
+    do: {:error, current_position}
 end

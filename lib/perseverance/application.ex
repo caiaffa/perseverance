@@ -13,9 +13,10 @@ defmodule Perseverance.Application do
       # Start the PubSub system
       {Phoenix.PubSub, name: Perseverance.PubSub},
       # Start the Endpoint (http/https)
-      PerseveranceWeb.Endpoint
+      PerseveranceWeb.Endpoint,
       # Start a worker by calling: Perseverance.Worker.start_link(arg)
       # {Perseverance.Worker, arg}
+      {Cachex, name: :perseverance}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
