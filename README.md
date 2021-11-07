@@ -38,6 +38,26 @@ $ make run
 # O servidor inciará na porta:4000 - acesse http://localhost:4000
 ```
 
+#### 🎲 API
+
+```bash
+Ex.:
+
+# Envia a sonda para a posição inicial.
+$ curl --location --request GET 'https://perseverance-control-center.herokuapp.com/api/v1/commands/start-position'
+
+# Exibe as coordenadas atuais x e y da sonda.
+$ curl --location --request GET 'https://perseverance-control-center.herokuapp.com/api/v1/commands/show-position'
+
+# Movimenta a sonda.
+$ curl --location --request POST 'https://perseverance-control-center.herokuapp.com/api/v1/commands/move-position' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+  "movements": ["GE", "M", "M", "M", "GD", "M", "M"]
+}'
+
+```
+
 ## 🛠 Tecnologias
 
 As seguintes ferramentas foram usadas na construção do projeto:
