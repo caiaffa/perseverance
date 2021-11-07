@@ -1,18 +1,49 @@
-# Perseverance
+<div align="center">
+    <h1>Perseverance</h1>
+</div>
 
-To start your Phoenix server:
 
-  * Install dependencies with `mix deps.get`
-  * Start Phoenix endpoint with `mix phx.server` or inside IEx with `iex -S mix phx.server`
+---
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+## 🚀 Como executar o projeto
 
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
+### Pré-requisitos
 
-## Learn more
+Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
+[Git](https://git-scm.com), [Elixir](https://elixir-lang.org/), [Docker-compose](https://docs.docker.com/compose/install) (Apenas para ambiente de desenvolvimento).
 
-  * Official website: https://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Forum: https://elixirforum.com/c/phoenix-forum
-  * Source: https://github.com/phoenixframework/phoenix
+#### 🎲 Rodando
+
+```bash
+Ex.:
+
+# Clone este repositório
+$ git clone https://github.com/caiaffa/perseverance.git
+
+# Acesse a pasta do projeto no terminal/cmd
+$ cd perseverance
+
+# Acesse a pasta do projeto no terminal/cmd
+$ cd perseverance
+
+# Instale as dependências
+$ make build
+
+# Execute os testes
+$ make test
+
+# Execute a aplicação
+$ make run
+
+# O servidor inciará na porta:4000 - acesse http://localhost:4000
+```
+
+## 🛠 Tecnologias
+
+As seguintes ferramentas foram usadas na construção do projeto:
+
+**Back-End**  ([Elixir](https://elixir-lang.org/)  +  [Phoenix](https://www.phoenixframework.org))
+
+> Veja o arquivo mix.exs
+
+---
